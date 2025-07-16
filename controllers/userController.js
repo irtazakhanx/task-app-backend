@@ -8,10 +8,11 @@ dotenv.config();
 exports.signup = async (req, res) => {
   try {
     const { username, email, password } = req.body;
+    console.log('Incoming request body:', req.body);
     if (!username || !email || !password) {
       return res.status(400).json({ error: 'All fields are required' });
     }
-    const existingUser = await User.findOne({ $or: [{ email }, { username }] });
+    const existingUser = await User.findOne({email});
     if (existingUser) {
       return res.status(400).json({ error: 'User already exists' });
     }
@@ -44,6 +45,7 @@ exports.login = async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 };
+
 
 exports.getUser = async (req, res) => {
   try {
