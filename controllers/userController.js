@@ -12,7 +12,7 @@ exports.signup = async (req, res) => {
     if (!username || !email || !password) {
       return res.status(400).json({ error: 'All fields are required' });
     }
-    const existingUser = await User.findOne({email});
+    const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ error: 'User already exists' });
     }
@@ -37,7 +37,7 @@ exports.login = async (req, res) => {
     }
     const user = await User.findOne({ email });
     if (!user) {
-      return res.status(400).json({ error: 'Invalid credentials' });
+      return res.status(400).json({ error: 'User Dont exist' });
     }
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
@@ -53,8 +53,8 @@ exports.login = async (req, res) => {
 
 exports.getUser = async (req, res) => {
   try {
-    const userId = req.user.id; 
-    const user = await User.findById(userId).select('-password'); 
+    const userId = req.user.id;
+    const user = await User.findById(userId).select('-password');
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
