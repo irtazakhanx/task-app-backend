@@ -9,8 +9,8 @@ const app = express();
 
 // Middleware
 const corsOptions = {
-  origin: 'http://localhost:5173',
-  credentials: true // if you want to allow cookies/auth headers
+  origin: 'https://localhost:5173',
+  credentials: true 
 };
 app.use(cors(corsOptions));
 app.use(express.json());
