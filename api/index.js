@@ -24,8 +24,8 @@ app.get('/', (req, res) => {
   res.send('Task Manager API');
 });
 
-const tasksRouter = require('./routes/tasks');
-const usersRouter = require('./routes/users');
+const tasksRouter = require('../routes/tasks');
+const usersRouter = require('../routes/users');
 app.use('/tasks', tasksRouter);
 app.use('/users', usersRouter);
 
