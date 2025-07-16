@@ -16,11 +16,15 @@ exports.signup = async (req, res) => {
     if (existingUser) {
       return res.status(400).json({ error: 'User already exists' });
     }
+
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = new User({ username, email, password: hashedPassword });
+
     await user.save();
     res.status(201).json({ message: 'User created successfully' });
+
   } catch (err) {
+    console.error('Signup error:', err);
     res.status(500).json({ error: 'Server error' });
   }
 };
