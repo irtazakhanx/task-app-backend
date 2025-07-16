@@ -8,11 +8,15 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+const corsOptions = {
+  origin: 'http://localhost:5173',
+  credentials: true // if you want to allow cookies/auth headers
+};
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // MongoDB Connection
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect(process.env.MONGO_URI,)
 .then(() => console.log('MongoDB connected'))
 .catch((err) => console.error('MongoDB connection error:', err));
 
