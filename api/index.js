@@ -21,7 +21,7 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // Basic route
 app.get('/', (req, res) => {
-  res.send('Task Manager API');
+  res.send('Task Manager API basic route');
 });
 
 const tasksRouter = require('../routes/tasks');
